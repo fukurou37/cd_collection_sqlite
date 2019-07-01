@@ -1,0 +1,28 @@
+<%= form_with model: cd, local: true do |form| %>
+<%= render "shared/errors", obj: cd %>
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :new_image %>
+    <%= form.file_field :new_image, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :artist_name %>
+    <%= form.text_field :artist_name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :price %>
+    <%= form.number_field :price, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :description %>
+    <%= form.text_area :description, rows: 10, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :genre_id %>
+    <%= form.text_field :genre_id, class: "form-control" %>
+  </div>
+  <%= form.submit class: "btn btn-primary" %>
+<% end %>

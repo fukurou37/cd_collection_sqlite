@@ -1,0 +1,19 @@
+ja:
+  cds:
+    new:
+      title: CD登録
+    edit:
+      title: 書籍更新
+    show:
+      price: 価格
+      price_yen: "¥%{price}"
+      description: CDの説明
+      edit: 編集
+      return: 戻る
+      delete: 削除
+      modal_title: 書籍削除
+      question_book: "%{cd}を削除しますか？"
+      delete_action: 削除する
+      chancel: キャンセル
+    index:
+      price_yen: "¥%{price}"
