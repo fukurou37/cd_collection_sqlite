@@ -1,8 +1,9 @@
 class CdsController < ApplicationController
-before_action :set_cd, only: [:show, :edit, :update, :destroy]
+before_action :set_cd, only: [:edit, :update, :destroy]
 
   def index
-    @cds = Cd.all
+    @q = Cd.ransack(params[:q])
+    @cds = @q.result.with_attached_image.find_newest_cds(params[:page])
   end
 
   def new
@@ -19,7 +20,7 @@ before_action :set_cd, only: [:show, :edit, :update, :destroy]
   end
 
   def show
-  
+    @cd = Cd.with_attached_image.includes(reviews: :user).find(params[:id])
   end
 
   def edit
@@ -42,7 +43,7 @@ before_action :set_cd, only: [:show, :edit, :update, :destroy]
   private
 
   def cd_params
-    params.require(:cd).permit(:title,:artist_name,:price,:description,:genre_id,:new_image)
+    params.require(:cd).permit(:title,:artist_name,:price,:description,:genre_id,:new_image, :category_id)
   end
 
   def set_cd

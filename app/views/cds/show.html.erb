@@ -8,6 +8,7 @@
     <h2><%= @cd.title %></h2>
     <ul>
       <li><b><%= t ".price" %>: </b><%= t(".price_yen", price: (number_with_delimiter @cd.price)) %></li>
+      <li><b><%= t ".category" %>: </b><%= @cd.category&.name %></li>
     </ul>
   </div>
 </div>
@@ -16,7 +17,12 @@
   <%= simple_format @cd.description %>
   <%= link_to t(".edit"), edit_cd_path(@cd), class: "btn btn-primary" %>
   <%= button_tag t(".delete"), class: "btn btn-warning", data: { toggle: "modal", target: "#delete-cd" } %>
+  <% if user_signed_in? %>
+    <%= link_to t(".review_new"), new_cd_review_path(@cd), class: "btn btn-info" %>
+  <% end %>
   <%= link_to t(".return"), cds_path, class: "btn btn-secondary" %>
+  <hr>
+  <%= render partial: "reviews/review", collection: @cd.reviews %>
 </div>
 
 <div class="modal fade" id="delete-cd">
